@@ -119,3 +119,25 @@ Example testbench for snippet of code from `comp.lang.verilog <https://github.co
                 raise TestFailure("Output didn't match")
 
         dut._log.info('Sucessfully sent %d cycles of data' % (index + 1))
+
+
+Mixed-signal (analog/digital)
+=============================
+
+This example with two different designs shows
+how cocotb can be used in an analog-mixed signal (AMS) simulation,
+provided your simulator supports this.
+Such an AMS setup involves a digital and an analog simulation kernel,
+and also provides means to transfer data between the digital and the analog domain.
+
+The "-AMS" variants of the common digital HDLs (VHDL-AMS, Verilog-AMS and SystemVerilog-AMS)
+and languages like Spice can be used to express the analog behavior of your circuit.
+
+Due to limitations of the underlying simulator interfaces (VPI, VHPI, FLI),
+cocotb cannot directly access the analog domain but has to resort to e.g. HDL helper code.
+Thus, unlike the other examples,
+part of this testbench is implemented with cocotb and the helper part with HDL.
+
+.. toctree::
+   rescap
+   regulator
